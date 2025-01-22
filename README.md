@@ -1,0 +1,2 @@
+# PitCoin
+Crypto meme coin
