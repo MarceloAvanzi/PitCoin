@@ -1,28 +1,21 @@
+require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-ethers");
 require("dotenv").config();
 
+/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: {
-    compilers: [
-      {
-        version: "0.8.28", // Para o Lock.sol
-      },
-      {
-        version: "0.8.20", // Para os contratos da OpenZeppelin
-      },
-    ],
-  },
+  solidity: "0.8.20",
   networks: {
-    // bscTestnet: {
-    //   url: "https://data-seed-prebsc-1-s1.binance.org:8545/",
-    //   accounts: [process.env.PRIVATE_KEY],
-    // },
-    hardhat: {
-      chainId: 1337, // ID da rede local padrão
+    sepolia: {
+      url: process.env.ALCHEMY_SEPOLIA_ENDPOINT,
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
     },
-    // bscMainnet: {
-    //   url: "https://bsc-dataseed.binance.org/",
-    //   accounts: [process.env.PRIVATE_KEY],
-    // },
+    mainnet: {
+      url: process.env.ALCHEMY_MAINNET_ENDPOINT,
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
+    }
   },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY
+  }
 };

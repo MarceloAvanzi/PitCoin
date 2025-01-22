@@ -1,14 +1,13 @@
 const hre = require("hardhat");
 
 async function main() {
-  await hre.run('compile');
   const [deployer] = await hre.ethers.getSigners();
 
   console.log("Deploying contract with the account:", deployer.address);
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   const PitCoin = await hre.ethers.getContractFactory("PitCoin");
-  const pitcoin = await PitCoin.deploy();
+  const pitcoin = await PitCoin.deploy(1000000);
 
   await pitcoin.deployed();
 
