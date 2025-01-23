@@ -7,11 +7,16 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   const PitCoin = await hre.ethers.getContractFactory("PitCoin");
-  const pitcoin = await PitCoin.deploy(1000000);
+  const pitcoin = await PitCoin.deploy(1000000000);
 
   await pitcoin.deployed();
 
   console.log("PitCoin deployed to:", pitcoin.address);
+
+  await hre.run("verify:verify", {
+    address: token.address,
+    constructorArguments: [1000000000]
+  })
 }
 
 main()
